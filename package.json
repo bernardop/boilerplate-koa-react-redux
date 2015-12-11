@@ -7,10 +7,12 @@
     "webserver": "node api/src/server.js",
     "test": "node_modules/.bin/mocha --compilers js:babel-core/register --require ./tests/test_helper.js 'tests/**/*.@(js|jsx)'",
     "test:watch": "npm run test -- --watch",
-    "build": "node_modules/.bin/webpack",
+    "build": "npm run clean:build && node_modules/.bin/webpack",
     "dev": "node_modules/.bin/webpack-dev-server",
     "lint": "eslint . --ext .js --ext .jsx",
-    "deploy": "NODE_ENV=production node_modules/.bin/webpack -p"
+    "deploy": "npm run clean:deploy && NODE_ENV=production node_modules/.bin/webpack -p",
+    "clean:build": "rm -rf app/build",
+    "clean:deploy": "rm -rf app/dist"
   },
   "repository": {
     "type": "git",
